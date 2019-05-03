@@ -1,0 +1,1 @@
+INSERT INTO person(name, social_security_number) values ('Wagner', '12345');
