@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/person")
+@RequestMapping("/api/people")
 public class PersonController {
 
     @Autowired
@@ -34,10 +34,22 @@ public class PersonController {
         return service.create(personDTO);
     }
 
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ResponseBody
-    public ErrorResponse handleNotFound(PersonNotFoundException e) {
-        return new ErrorResponse(null, "Person with id " + e.getId() + " not found!");
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
     }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public PersonDTO update(@RequestBody PersonDTO personDTO) {
+        return service.update(personDTO);
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Response handleNotFound(PersonNotFoundException e) {
+        return new Response(null, "Person with id " + e.getId() + " not found!");
+
+    }
+
 }

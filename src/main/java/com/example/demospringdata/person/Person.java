@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "person")
 public class Person {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
@@ -21,4 +22,5 @@ public class Person {
     @Setter
     @Column(name = "social_security_number")
     private String socialSecurityNumber;
+
 }

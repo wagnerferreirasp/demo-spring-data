@@ -1,11 +1,14 @@
 package com.example.demospringdata.person;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
+@Data
 public class PersonDTO {
-    @Setter private Long id;
-    @Setter private String name;
-    @Setter private String socialSecurityNumber;
+
+    private Long id;
+
+    private String name;
+
+    private String socialSecurityNumber;
+
 }

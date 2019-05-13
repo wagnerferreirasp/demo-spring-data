@@ -1,33 +1,17 @@
 package com.example.demospringdata.person;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class PersonService {
-    @Autowired
-    PersonRepository repository;
+public interface PersonService {
 
-    public List<PersonDTO> findAll() {
-        return PersonMapper.mapEntitiesIntoDTOs(repository.findAll());
-    }
+    List<PersonDTO> findAll();
 
-    public PersonDTO findById(Long id) {
-        Optional<Person> optionalPerson = repository.findById(id);
-        if (optionalPerson.isPresent()) {
-            return PersonMapper.mapEntityIntoDTO(optionalPerson.get());
-        }
-        throw new PersonNotFoundException(id);
-    }
+    PersonDTO findById(Long id);
 
-    public PersonDTO create(PersonDTO personDTO) {
-        Person newPerson = new Person();
-        newPerson.setName(personDTO.getName());
-        newPerson.setSocialSecurityNumber(personDTO.getSocialSecurityNumber());
+    PersonDTO create(PersonDTO personDTO);
 
-        return PersonMapper.mapEntityIntoDTO(repository.save(newPerson));
-    }
+    PersonDTO update(PersonDTO personDTO);
+
+    void delete(Long id);
+
 }
