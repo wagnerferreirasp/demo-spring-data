@@ -17,7 +17,7 @@ public class Person {
 
     @Setter
     @Column(name = "name")
-    private String name;
+    private String nome;
 
     @Setter
     @Column(name = "social_security_number")
